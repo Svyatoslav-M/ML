@@ -83,10 +83,11 @@ for epoch in range(10):
         optimizer.step()
 
     test_preds = mnist_net.forward(X_test)
-    test_loss_history.append(loss(test_preds, y_test))
+    test_loss_history.append(loss(test_preds, y_test).data.cpu())
     
     accuracy = (test_preds.argmax(dim=1) == y_test).float().mean()
     test_accuracy_history.append(accuracy)
     print(accuracy)
 
-plt.plot(test_accuracy_history)
+#plt.plot(test_accuracy_history)
+plt.plot(test_loss_history)
